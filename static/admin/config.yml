@@ -1,0 +1,33 @@
+backend:
+  name: github
+  repo: ameego/netlifycms-issue
+  branch: master
+  site_domain: cms.netlify.com
+media_folder: static/assets
+public_folder: /assets
+collections:
+  - label: Artistes
+    name: artists
+    summary: "{{artistName}}"
+    label_singular: artiste
+    folder: "collections/artists"
+    create: true
+    slug: "{{artistName}}"
+    extension: json
+    editor:
+      preview: false
+    fields:
+      - label: "Nom de l'artiste"
+        name: artistName
+      - name: slug
+        label: "Slug"
+        pattern:
+          [
+            "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "A slug can have no spaces or special characters",
+          ]
+      - label: Bannière
+        name: banner
+        widget: image
+        required: false
+        media_folder: "/static/assets/banner/{{fields.slug}}"
